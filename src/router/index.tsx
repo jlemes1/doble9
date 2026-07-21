@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router';
 import { RootLayout } from '../layouts/RootLayout';
 import { Home } from '../pages/Home';
+import { Shirts } from '../pages/Shirts';
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'shirts',
-        element: <div>Camisetas</div>,
+        element: <Shirts />,
       },
       {
         path: 'about',
