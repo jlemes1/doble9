@@ -1,5 +1,5 @@
 import { ProductGrid } from '../components/home/ProductGrid';
-import { ContainerFilter } from '../components/products/ContainerFilter';
+import { FilterContainer } from '../components/products/FilterContainer';
 import { allShirts } from '../data/initialData';
 
 export const Shirts = () => {
@@ -9,7 +9,7 @@ export const Shirts = () => {
 
       <div className='grid grid-cols-1 lg:grid-cols-4 gap-8 items-start'>
         <div className='lg:col-span-1'>
-          <ContainerFilter />
+          <FilterContainer />
         </div>
 
         <div className='lg:col-span-3'>

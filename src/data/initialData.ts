@@ -97,7 +97,7 @@ export const allShirts = [
     id: '1a2b3c4d-0003',
     name: 'Barcelona Suplente 2026',
     slug: 'barcelona-suplente-2026',
-    team: 'FC Barcelona',
+    team: 'Barcelona',
     brand: 'Nike',
     league: 'La Liga',
     price: 139999,
