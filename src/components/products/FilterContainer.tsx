@@ -2,14 +2,16 @@ import { Separator } from '../ui/Separator';
 
 const brands = ['Nike', 'Adidas', 'Puma', 'Kappa'];
 const teams = [
-  'River Plate',
-  'Boca Juniors',
-  'Real Madrid',
-  'Barcelona',
-  'Fiorentina',
-  'Argentina',
-  'Portugal',
-  'Alemania',
+  'Independiente',
+  'Racing Club',
+  'Atlético Madrid',
+  'Valencia',
+  'Roma',
+  'Milan',
+  'Juventus',
+  'Francia',
+  'Túnez',
+  'Japón',
 ];
 const leagues = ['Selecciones', 'La Liga', 'Liga Argentina', 'Serie A'];
 
