@@ -1,4 +1,4 @@
-import type { JSONContent } from '@tiptap/react';
+import type { Json } from '../supabase/supabase';
 
 export type Variant = {
   id: string;
@@ -14,7 +14,7 @@ export type Product = {
   team: string;
   league: string;
   price: number;
-  description: JSONContent;
+  description: Json;
   created_at: string;
   images: string[];
   variants: Variant[];
