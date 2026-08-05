@@ -1,5 +1,6 @@
 import { ProductGrid } from '../components/home/ProductGrid';
 import { FilterContainer } from '../components/products/FilterContainer';
+import { Pagination } from '../components/shared/Pagination';
 import { useFilteredProducts } from '../hooks/products/useFilteredProducts';
 import { useState } from 'react';
 
@@ -45,6 +46,11 @@ export const Shirts = () => {
         ) : (
           <div className='lg:col-span-3'>
             <ProductGrid products={products} className='mb-32' />
+            <Pagination
+              page={page}
+              setPage={setPage}
+              totalItems={totalProducts}
+            />
           </div>
         )}
       </div>
