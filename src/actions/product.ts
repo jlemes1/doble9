@@ -55,3 +55,18 @@ export const getFilteredProducts = async ({
 
   return { data, count };
 };
+
+export const getRecentProducts = async () => {
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('*, variants(*)')
+    .order('created_at', { ascending: false })
+    .limit(4);
+
+  if (error) {
+    console.log(error.message);
+    throw new Error(error.message);
+  }
+
+  return products;
+};
