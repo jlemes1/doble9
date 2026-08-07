@@ -15,7 +15,7 @@ export const CardProduct = ({ img, name, price, slug }: Props) => {
   return (
     <div className='flex flex-col gap-6 relative'>
       <Link
-        to={`shirts/${slug}`}
+        to={`/shirts/${slug}`}
         className='flex relative group overflow-hidden'
       >
         <div className='flex h-87.5 w-full items-center justify-center py-2 lg:h-62.5'>
