@@ -1,6 +1,5 @@
 import { FeatureGrid } from '../components/home/FeatureGrid';
 import { ProductGrid } from '../components/home/ProductGrid';
-import { popularShirts } from '../data/initialData';
 import { useHomeProducts } from '../hooks/products/useHomeProducts';
 
 export const Home = () => {
@@ -16,7 +15,6 @@ export const Home = () => {
       ) : (
         <ProductGrid title='Nuevas camisetas' products={products} />
       )}
-      <ProductGrid title='Camisetas populares' products={popularShirts} />
     </div>
   );
 };
