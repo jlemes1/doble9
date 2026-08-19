@@ -3,6 +3,7 @@ import { RootLayout } from '../layouts/RootLayout';
 import { Home } from '../pages/Home';
 import { Shirts } from '../pages/Shirts';
 import { About } from '../pages/About';
+import { Shirt } from '../pages/Shirt';
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
       {
         path: 'shirts',
         element: <Shirts />,
+      },
+      {
+        path: 'shirts/:slug',
+        element: <Shirt />,
       },
       {
         path: 'about',
