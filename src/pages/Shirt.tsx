@@ -7,6 +7,7 @@ import { useParams } from 'react-router';
 import { useState } from 'react';
 import type { Variant } from '../types/product';
 import { GridImages } from '../components/one-product/GridImages';
+import { useCounterStore } from '../store/counter';
 
 export const Shirt = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -15,6 +16,10 @@ export const Shirt = () => {
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
+
+  const count = useCounterStore((state) => state.count);
+  const increment = useCounterStore((state) => state.increment);
+  const decrement = useCounterStore((state) => state.decrement);
 
   //const isOutOfStock = selectedVariant?.stock === 0;
 
@@ -89,11 +94,15 @@ export const Shirt = () => {
             <p className='text-sm font-medium'>Cantidad:</p>
 
             <div className='flex gap-8 px-5 py-3 border border-slate-200 w-fit rounded-full'>
-              <button>
+              <button
+                onClick={decrement}
+                disabled={count === 1}
+                className='cursor-pointer disabled:cursor-not-allowed'
+              >
                 <Minus size={15} />
               </button>
-              <span className='text-slate-500 text-sm'>1</span>
-              <button>
+              <span className='text-slate-500 text-sm'>{count}</span>
+              <button onClick={increment} className='cursor-pointer'>
                 <Plus size={15} />
               </button>
             </div>
