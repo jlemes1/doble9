@@ -1,0 +1,52 @@
+import { useEffect, useRef } from 'react';
+import { useGlobalStore } from '../../store/global';
+
+export const Sheet = () => {
+  const sheetContent = useGlobalStore((state) => state.sheetContent);
+  const closeSheet = useGlobalStore((state) => state.closeSheet);
+
+  const sheetRef = useRef<HTMLDivElement | null>(null);
+
+  // Oculta scroll y cierra el sheet al hacer click fuera de el
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        sheetRef.current &&
+        !sheetRef.current.contains(event.target as Node)
+      ) {
+        closeSheet();
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.body.style.overflow = 'unset';
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, [closeSheet]);
+
+  const showContent = () => {
+    switch (sheetContent) {
+      case 'cart':
+        return <p>Cart</p>;
+      case 'search':
+        return <p>Search</p>;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className='fixed inset-0 bg-black/50 z-50 flex justify-end '>
+      <div
+        className='bg-white text-black h-screen w-125 shadow-lg '
+        ref={sheetRef}
+      >
+        {showContent()}
+      </div>
+    </div>
+  );
+};
