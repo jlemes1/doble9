@@ -41,9 +41,9 @@ export const Sheet = () => {
   };
 
   return (
-    <div className='fixed inset-0 bg-black/50 z-50 flex justify-end '>
+    <div className='fixed inset-0 bg-black/50 z-50 flex justify-end animate-fade-in'>
       <div
-        className='bg-white text-black h-screen w-125 shadow-lg '
+        className='bg-white text-black h-screen w-125 shadow-lg animate-slide-in'
         ref={sheetRef}
       >
         {showContent()}
