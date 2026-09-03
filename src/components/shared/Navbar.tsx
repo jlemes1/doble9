@@ -25,7 +25,7 @@ export const Navbar = () => {
       </nav>
 
       <div className='flex gap-5 items-center'>
-        <button onClick={() => openSheet('search')}>
+        <button className='cursor-pointer' onClick={() => openSheet('search')}>
           <Search />
         </button>
 

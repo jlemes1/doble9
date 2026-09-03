@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useGlobalStore } from '../../store/global';
+import { Search } from './Search';
 
 export const Sheet = () => {
   const sheetContent = useGlobalStore((state) => state.sheetContent);
@@ -33,7 +34,7 @@ export const Sheet = () => {
       case 'cart':
         return <p>Cart</p>;
       case 'search':
-        return <p>Search</p>;
+        return <Search />;
       default:
         return null;
     }
