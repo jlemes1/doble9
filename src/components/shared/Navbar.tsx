@@ -6,6 +6,9 @@ import { useGlobalStore } from '../../store/global';
 
 export const Navbar = () => {
   const openSheet = useGlobalStore((state) => state.openSheet);
+  const setActiveNavbarMobile = useGlobalStore(
+    (state) => state.setActiveNavbarMobile,
+  );
 
   return (
     <header className='bg-white text-black py-4 px-5 flex items-center justify-between border-b border-slate-200 lg:px-12'>
@@ -42,7 +45,10 @@ export const Navbar = () => {
           <Handbag />
         </button>
 
-        <button className='md:hidden'>
+        <button
+          className='md:hidden'
+          onClick={() => setActiveNavbarMobile(true)}
+        >
           <Menu />
         </button>
       </div>
