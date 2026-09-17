@@ -8,6 +8,8 @@ import { useState } from 'react';
 import type { Variant } from '../types/product';
 import { GridImages } from '../components/one-product/GridImages';
 import { useCounterStore } from '../store/counter';
+import { useCartStore } from '../store/cart';
+import { useGlobalStore } from '../store/global';
 
 export const Shirt = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -20,6 +22,24 @@ export const Shirt = () => {
   const count = useCounterStore((state) => state.count);
   const increment = useCounterStore((state) => state.increment);
   const decrement = useCounterStore((state) => state.decrement);
+
+  const addItem = useCartStore((state) => state.addItem);
+
+  const addToCart = () => {
+    if (selectedVariant) {
+      addItem({
+        variantId: selectedVariant.id,
+        productId: product?.id || '',
+        name: product?.name || '',
+        image: product?.images[0] || '',
+        price: product?.price || 0,
+        size: selectedVariant.size,
+        quantity: count,
+      });
+    }
+  };
+
+  const openSheet = useGlobalStore((state) => state.openSheet);
 
   //const isOutOfStock = selectedVariant?.stock === 0;
 
@@ -111,9 +131,13 @@ export const Shirt = () => {
           <div className='flex flex-col gap-3'>
             <button
               disabled={!selectedVariant || selectedVariant.stock === 0}
-              className='bg-[#f3f3f3] uppercase font-semibold tracking-widest text-xs py-4 rounded-full transition-all duration-300 hover:bg-[#e2e2e2] disabled:opacity-50 disabled:cursor-not-allowed'
+              className='bg-[#f3f3f3] uppercase font-semibold tracking-widest text-xs py-4 rounded-full transition-all duration-300 hover:bg-[#e2e2e2] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
+              onClick={() => {
+                addToCart();
+                openSheet('cart');
+              }}
             >
-              Agregar al carro
+              Agregar al carrito
             </button>
 
             <button

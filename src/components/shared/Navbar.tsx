@@ -1,14 +1,17 @@
 import { Link, NavLink } from 'react-router';
 import { navbarLinks } from '../../constants/links';
-import { Handbag, Menu, Search, User } from 'lucide-react';
+import { Menu, Search, ShoppingCart, User } from 'lucide-react';
 import { Logo } from './Logo';
 import { useGlobalStore } from '../../store/global';
+import { useCartStore } from '../../store/cart';
 
 export const Navbar = () => {
   const openSheet = useGlobalStore((state) => state.openSheet);
   const setActiveNavbarMobile = useGlobalStore(
     (state) => state.setActiveNavbarMobile,
   );
+
+  const totalItemsInCart = useCartStore((state) => state.totalItemsInCart);
 
   return (
     <header className='bg-white text-black py-4 px-5 flex items-center justify-between border-b border-slate-200 lg:px-12'>
@@ -38,11 +41,14 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        <button className='relative' onClick={() => openSheet('cart')}>
+        <button
+          className='relative cursor-pointer'
+          onClick={() => openSheet('cart')}
+        >
           <span className='absolute -bottom-2 -right-2 w-5 h-5 grid place-items-center bg-black text-white text-xs rounded-full'>
-            0
+            {totalItemsInCart}
           </span>
-          <Handbag />
+          <ShoppingCart />
         </button>
 
         <button
