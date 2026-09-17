@@ -139,13 +139,6 @@ export const Shirt = () => {
             >
               Agregar al carrito
             </button>
-
-            <button
-              disabled={!selectedVariant || selectedVariant.stock === 0}
-              className='bg-black text-white uppercase font-semibold tracking-widest text-xs py-4 rounded-full disabled:opacity-50 disabled:cursor-not-allowed'
-            >
-              Comprar ahora
-            </button>
           </div>
 
           <div className='flex pt-2'>
