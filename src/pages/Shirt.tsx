@@ -10,6 +10,7 @@ import { GridImages } from '../components/one-product/GridImages';
 import { useCounterStore } from '../store/counter';
 import { useCartStore } from '../store/cart';
 import { useGlobalStore } from '../store/global';
+import toast from 'react-hot-toast';
 
 export const Shirt = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -24,6 +25,7 @@ export const Shirt = () => {
   const decrement = useCounterStore((state) => state.decrement);
 
   const addItem = useCartStore((state) => state.addItem);
+  const openSheet = useGlobalStore((state) => state.openSheet);
 
   const addToCart = () => {
     if (selectedVariant) {
@@ -36,10 +38,12 @@ export const Shirt = () => {
         size: selectedVariant.size,
         quantity: count,
       });
+      toast.success('Producto agregado al carrito', {
+        position: 'bottom-left',
+      });
+      openSheet('cart');
     }
   };
-
-  const openSheet = useGlobalStore((state) => state.openSheet);
 
   //const isOutOfStock = selectedVariant?.stock === 0;
 
@@ -132,10 +136,7 @@ export const Shirt = () => {
             <button
               disabled={!selectedVariant || selectedVariant.stock === 0}
               className='bg-[#f3f3f3] uppercase font-semibold tracking-widest text-xs py-4 rounded-full transition-all duration-300 hover:bg-[#e2e2e2] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
-              onClick={() => {
-                addToCart();
-                openSheet('cart');
-              }}
+              onClick={addToCart}
             >
               Agregar al carrito
             </button>
