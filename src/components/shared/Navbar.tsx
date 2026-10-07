@@ -4,6 +4,7 @@ import { Menu, Search, ShoppingCart, User } from 'lucide-react';
 import { Logo } from './Logo';
 import { useGlobalStore } from '../../store/global';
 import { useCartStore } from '../../store/cart';
+import { useUser } from '../../hooks/auth/useUser';
 
 export const Navbar = () => {
   const openSheet = useGlobalStore((state) => state.openSheet);
@@ -12,6 +13,8 @@ export const Navbar = () => {
   );
 
   const totalItemsInCart = useCartStore((state) => state.totalItemsInCart);
+
+  const { session, isLoading } = useUser();
 
   return (
     <header className='bg-white text-black py-4 px-5 flex items-center justify-between border-b border-slate-200 lg:px-12'>
@@ -35,11 +38,22 @@ export const Navbar = () => {
           <Search />
         </button>
 
-        <div className='relative'>
-          <Link to='/account'>
-            <User />
+        {isLoading ? (
+          <p>Cargando...</p>
+        ) : session ? (
+          <div className='relative'>
+            <Link
+              to='/account'
+              className='border-2 border-slate-700 w-9 h-9 rounded-full grid place-items-center text-lg font-bold'
+            >
+              J
+            </Link>
+          </div>
+        ) : (
+          <Link to='/login'>
+            <User size={25} />
           </Link>
-        </div>
+        )}
 
         <button
           className='relative cursor-pointer'
