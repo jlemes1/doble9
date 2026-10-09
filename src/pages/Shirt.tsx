@@ -4,7 +4,7 @@ import { Separator } from '../components/ui/Separator';
 import { formatPrice } from '../utils';
 import { useProduct } from '../hooks/products/useProduct';
 import { useParams } from 'react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Variant } from '../types/product';
 import { GridImages } from '../components/one-product/GridImages';
 import { useCounterStore } from '../store/counter';
@@ -19,10 +19,22 @@ export const Shirt = () => {
 
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<Variant | null>(null);
+  const [prevSlug, setPrevSlug] = useState(slug);
+
+  if (slug !== prevSlug) {
+    setPrevSlug(slug);
+    setSelectedSize(null);
+    setSelectedVariant(null);
+  }
 
   const count = useCounterStore((state) => state.count);
   const increment = useCounterStore((state) => state.increment);
   const decrement = useCounterStore((state) => state.decrement);
+  const resetCount = useCounterStore((state) => state.reset);
+
+  useEffect(() => {
+    resetCount();
+  }, [slug, resetCount]);
 
   const addItem = useCartStore((state) => state.addItem);
   const openSheet = useGlobalStore((state) => state.openSheet);
